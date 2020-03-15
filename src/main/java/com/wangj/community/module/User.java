@@ -1,5 +1,8 @@
 package com.wangj.community.module;
 
+import lombok.Data;
+
+@Data
 public class User {
 
     private Integer id;
@@ -55,17 +58,5 @@ public class User {
 
     public void setGmtModified(Long gmtModified) {
         this.gmtModified = gmtModified;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", accountId='" + accountId + '\'' +
-                ", token='" + token + '\'' +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModified=" + gmtModified +
-                '}';
     }
 }
