@@ -1,10 +1,7 @@
 package com.wangj.community.controller;
 
 import com.wangj.community.dto.PaginationDTO;
-import com.wangj.community.dto.QuestionDTO;
-import com.wangj.community.mapper.QuestionMapper;
 import com.wangj.community.mapper.UserMapper;
-import com.wangj.community.module.Question;
 import com.wangj.community.module.User;
 import com.wangj.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import java.awt.*;
-import java.util.List;
 
 @Controller
 public class IndexController {

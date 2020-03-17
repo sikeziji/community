@@ -77,7 +77,7 @@
                         </a>
                     </li>
                     <li th:if="${pagination.showPrevious}">
-                        <a th:href="@{/(page=${pagination.page - 1})}"  aria-label="Previous">
+                        <a th:href="@{/(page=${pagination.page - 1})}" aria-label="Previous">
                             <span aria-label="true">&lt;</span>
                         </a>
                     </li>
@@ -86,7 +86,7 @@
                         <a th:href="@{/(page=${page})}" th:text="${page}"></a>
                     </li>
                     <li th:if="${pagination.showNext}">
-                        <a th:href="@{/(page=${pagination.page + 1})}"  aria-label="Next">
+                        <a th:href="@{/(page=${pagination.page + 1})}" aria-label="Next">
                             <span aria-hidden="true">&gt;</span>
                         </a>
                     </li>
