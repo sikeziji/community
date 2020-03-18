@@ -65,7 +65,7 @@ public class AuthorizeController {
             user.setAvatarUrl(githubUser.getAvatarUrl());
             user.setBio(githubUser.getBio());
             userMapper.insert(user);
-            response.addCookie(new Cookie("token", token));
+            response.addCookie(new Cookie("token",token));
             return "redirect:/";
         } else {
             System.out.println("登录失败");
