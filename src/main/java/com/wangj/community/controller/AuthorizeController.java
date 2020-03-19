@@ -1,6 +1,5 @@
 package com.wangj.community.controller;
 
-import com.sun.org.apache.regexp.internal.recompile;
 import com.wangj.community.dto.AccessTokenDTO;
 import com.wangj.community.dto.GithubUser;
 import com.wangj.community.mapper.UserMapper;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
