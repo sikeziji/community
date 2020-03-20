@@ -2,9 +2,9 @@ package com.wangj.community.controller;
 
 import com.wangj.community.dto.AccessTokenDTO;
 import com.wangj.community.dto.GithubUser;
-import com.wangj.community.mapper.UserMapper;
 import com.wangj.community.module.User;
 import com.wangj.community.provider.GithubProvider;
+import com.wangj.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
@@ -20,18 +21,15 @@ public class AuthorizeController {
 
 
     @Autowired
+    UserService userService;
+    @Autowired
     private GithubProvider githubProvider;
-
     @Value("${github.client.id}")
     private String clientId;
     @Value("${github.client.secret}")
     private String clientSecret;
     @Value("${github.redirect.uri}")
     private String redirectUri;
-
-
-    @Autowired
-    private UserMapper userMapper;
 
     /**
      * @param code
@@ -49,7 +47,6 @@ public class AuthorizeController {
         accessTokenDTO.setState(state);
         accessTokenDTO.setRedirect_uri(redirectUri);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
-        System.out.println("accessToken = " + accessToken);
         GithubUser githubUser = githubProvider.getUser(accessToken);
         if (githubUser != null) {
             //登录成功，写cookie 和session
@@ -58,18 +55,27 @@ public class AuthorizeController {
             user.setToken(token);
             user.setName(githubUser.getName());
             user.setAccountId(String.valueOf(githubUser.getId()));
-            user.setGmtCreate(System.currentTimeMillis());
-            user.setGmtModified(user.getGmtCreate());
             user.setAvatarUrl(githubUser.getAvatarUrl());
             user.setBio(githubUser.getBio());
-            userMapper.insert(user);
-            response.addCookie(new Cookie("token",token));
+            userService.createOrUpdate(user);
+            response.addCookie(new Cookie("token", token));
+            System.out.println("登录成功");
             return "redirect:/";
         } else {
             System.out.println("登录失败");
             //登录失败，重新登录
             return "redirect:/";
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request,
+                         HttpServletResponse response) {
+        request.getSession().removeAttribute("user");
+        Cookie cookie = new Cookie("token",null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        return "redirect:/";
     }
 
 }
