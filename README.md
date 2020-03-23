@@ -17,3 +17,10 @@ CREATE TABLE USER
 
 `数据库名称更改为 communities`
 
+
+
+```bash
+mvn flyway:migrate
+// 您可以使用标准Maven命令行属性将参数传递给目标
+mvn -Dmybatis.generator.overwrite=true mybatis-generator:generate
+```
