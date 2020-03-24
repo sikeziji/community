@@ -2,6 +2,8 @@ package com.wangj.community.service;
 
 import com.wangj.community.dto.PaginationDTO;
 import com.wangj.community.dto.QuestionDTO;
+import com.wangj.community.exception.CustomizeErrorCode;
+import com.wangj.community.exception.CustomizeException;
 import com.wangj.community.mapper.QuestionMapper;
 import com.wangj.community.mapper.UserMapper;
 import com.wangj.community.module.Question;
@@ -31,18 +33,18 @@ public class QuestionService {
         Integer totalPage;
         Integer totalCount = (int) questionMapper.countByExample(new QuestionExample());
 
-        if (totalCount % size == 0){
-            totalPage = totalCount/size;
-        }else{
+        if (totalCount % size == 0) {
+            totalPage = totalCount / size;
+        } else {
             totalPage = totalCount / size + 1;
         }
-        if (page<1){
+        if (page < 1) {
             page = 1;
         }
-        if (page > totalPage){
+        if (page > totalPage) {
             page = totalPage;
         }
-        paginationDTO.setPagination(totalPage,page);
+        paginationDTO.setPagination(totalPage, page);
         Integer offset = size * (page - 1);
 
         QuestionExample example = new QuestionExample();
@@ -71,18 +73,18 @@ public class QuestionService {
         example.createCriteria().andCreatorEqualTo(id);
         Integer totalCount = (int) questionMapper.countByExample(example);
 
-        if (totalCount % size == 0){
-           totalPage = totalCount/size;
-        }else{
+        if (totalCount % size == 0) {
+            totalPage = totalCount / size;
+        } else {
             totalPage = totalCount / size + 1;
         }
-        if (page < 1){
+        if (page < 1) {
             page = 1;
         }
-        if (page > totalPage){
+        if (page > totalPage) {
             page = totalPage;
         }
-        paginationDTO.setPagination(totalPage,page);
+        paginationDTO.setPagination(totalPage, page);
 
 
         Integer offset = size * (page - 1);
@@ -109,20 +111,25 @@ public class QuestionService {
 
     /**
      * 根据ID 获取QuestionDTO
+     *
      * @param id
      * @return
      */
     public QuestionDTO getById(Integer id) {
         Question question = questionMapper.selectByPrimaryKey(id);
+        if (question == null) {
+            throw new CustomizeException("你找的问题不存在，请换个试试？");
+        }
         QuestionDTO questionDTO = new QuestionDTO();
         User user = userMapper.selectByPrimaryKey(question.getCreator());
         questionDTO.setUser(user);
-        BeanUtils.copyProperties(question,questionDTO);
+        BeanUtils.copyProperties(question, questionDTO);
         return questionDTO;
     }
 
     /**
-     *  判断question的ID，是否创建或更新
+     * 判断question的ID，是否创建或更新
+     *
      * @param question
      */
     public void createOrUpdate(Question question) {
@@ -131,7 +138,7 @@ public class QuestionService {
             question.setGmtCreate(System.currentTimeMillis());
             question.setGmtModified(question.getGmtCreate());
             questionMapper.insert(question);
-        }else {
+        } else {
             //更新
             Question updateQuestion = new Question();
             updateQuestion.setGmtModified(System.currentTimeMillis());
@@ -140,7 +147,10 @@ public class QuestionService {
             updateQuestion.setTag(question.getTag());
             QuestionExample questionExample = new QuestionExample();
             questionExample.createCriteria().andIdEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(updateQuestion,questionExample);
+            int updated = questionMapper.updateByExampleSelective(updateQuestion, questionExample);
+            if (updated !=1) {
+                throw new  CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
     }
 }
