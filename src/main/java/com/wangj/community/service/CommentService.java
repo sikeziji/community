@@ -6,9 +6,9 @@ import com.wangj.community.exception.CustomizeException;
 import com.wangj.community.mapper.CommentMapper;
 import com.wangj.community.mapper.QuestionExtMapper;
 import com.wangj.community.mapper.QuestionMapper;
-import com.wangj.community.module.Comment;
-import com.wangj.community.module.Question;
-import com.wangj.community.module.User;
+import com.wangj.community.model.Comment;
+import com.wangj.community.model.Question;
+import com.wangj.community.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

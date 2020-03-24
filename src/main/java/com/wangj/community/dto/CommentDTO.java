@@ -1,7 +1,7 @@
 package com.wangj.community.dto;
 
 
-import com.wangj.community.module.User;
+import com.wangj.community.model.User;
 import lombok.Data;
 
 @Data

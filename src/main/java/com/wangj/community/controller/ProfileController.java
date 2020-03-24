@@ -2,7 +2,7 @@ package com.wangj.community.controller;
 
 
 import com.wangj.community.dto.PaginationDTO;
-import com.wangj.community.module.User;
+import com.wangj.community.model.User;
 import com.wangj.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

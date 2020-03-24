@@ -2,7 +2,7 @@ package com.wangj.community.controller;
 
 import com.wangj.community.dto.AccessTokenDTO;
 import com.wangj.community.dto.GithubUser;
-import com.wangj.community.module.User;
+import com.wangj.community.model.User;
 import com.wangj.community.provider.GithubProvider;
 import com.wangj.community.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

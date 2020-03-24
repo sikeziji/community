@@ -1,17 +1,17 @@
 package com.wangj.community.dto;
 
-import com.wangj.community.module.User;
+import com.wangj.community.model.User;
 import lombok.Data;
 
 @Data
 public class QuestionDTO {
-    private Integer id;
+    private Long id;
     private String title;
     private String description;
     private String tag;
     private Long gmtCreate;
     private Long gmtModified;
-    private Integer creator;
+    private Long creator;
     private Integer viewCount;
     private Integer commentCount;
     private Integer likeCount;

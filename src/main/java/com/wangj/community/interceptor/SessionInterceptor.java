@@ -1,10 +1,9 @@
 package com.wangj.community.interceptor;
 
 import com.wangj.community.mapper.UserMapper;
-import com.wangj.community.module.User;
-import com.wangj.community.module.UserExample;
+import com.wangj.community.model.User;
+import com.wangj.community.model.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;

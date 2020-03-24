@@ -1,9 +1,8 @@
 package com.wangj.community.controller;
 
 import com.wangj.community.dto.QuestionDTO;
-import com.wangj.community.mapper.QuestionMapper;
-import com.wangj.community.module.Question;
-import com.wangj.community.module.User;
+import com.wangj.community.model.Question;
+import com.wangj.community.model.User;
 import com.wangj.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -80,6 +79,7 @@ public class PublishController {
         question.setCreator(user.getId());
         question.setId(id);
         question.setDescription(description);
+        System.out.println("创建新问题");
         questionService.createOrUpdate(question);
         return "redirect:/";
     }

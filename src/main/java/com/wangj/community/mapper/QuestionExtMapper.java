@@ -2,7 +2,7 @@ package com.wangj.community.mapper;
 
 
 
-import com.wangj.community.module.Question;
+import com.wangj.community.model.Question;
 
 import java.util.List;
 
