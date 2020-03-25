@@ -46,11 +46,11 @@ public class GithubProvider {
 //                    "\"space\":976562499,\"collaborators\"" +
 //                    ":0,\"private_repos\":10000}}";
             GithubUser githubUser = JSON.parseObject(string, GithubUser.class);
-            System.out.println("githubUser"+ githubUser == null);
-            System.out.println("githubUser"+ githubUser.getAvatarUrl());
-            System.out.println("githubUser"+ githubUser.getId());
-            System.out.println("githubUser"+ githubUser.getBio());
-            System.out.println("githubUser"+ githubUser.getName());
+//            System.out.println("githubUser"+ githubUser == null);
+//            System.out.println("githubUser"+ githubUser.getAvatarUrl());
+//            System.out.println("githubUser"+ githubUser.getId());
+//            System.out.println("githubUser"+ githubUser.getBio());
+//            System.out.println("githubUser"+ githubUser.getName());
             return githubUser;
         } catch (IOException e) {
             e.printStackTrace();
