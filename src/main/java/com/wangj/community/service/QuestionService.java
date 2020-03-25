@@ -145,7 +145,11 @@ public class QuestionService {
             question.setViewCount(0);
             question.setLikeCount(0);
             question.setCommentCount(0);
-            questionMapper.insert(question);
+            try {
+                questionMapper.insert(question);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             //更新
             Question updateQuestion = new Question();
@@ -164,6 +168,7 @@ public class QuestionService {
 
     /**
      * 更新阅读数量
+     *
      * @param id
      */
     public void incView(Long id) {
