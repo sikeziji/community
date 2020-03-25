@@ -1,7 +1,6 @@
 package com.wangj.community.controller;
 
 import com.wangj.community.dto.QuestionDTO;
-import com.wangj.community.mapper.QuestionMapper;
 import com.wangj.community.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

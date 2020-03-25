@@ -12,20 +12,29 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     public void createOrUpdate(User user) {
+        System.out.println("user = " + user.getAccountId());
+        System.out.println("user = " + user.getId());
         UserExample userExample = new UserExample();
         userExample.createCriteria()
                 .andAccountIdEqualTo(user.getAccountId());
         List<User> users = userMapper.selectByExample(userExample);
-        if (users == null && users.size() != 0) {
+        if (users.size() == 0) {
             //插入
+
+            System.out.println("添加User");
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
-            userMapper.insert(user);
+            try {
+                userMapper.insert(user);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             //更新
+            System.out.println("更新User");
             User dbUser = users.get(0);
             User updateUser = new User();
             updateUser.setGmtModified(System.currentTimeMillis());
