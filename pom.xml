@@ -76,7 +76,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.4.200</version>
+            <version>2.0.206</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -115,7 +115,7 @@
                     <dependency>
                         <groupId>com.h2database</groupId>
                         <artifactId>h2</artifactId>
-                        <version>1.4.200</version>
+                        <version>2.0.206</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -127,7 +127,7 @@
                     <dependency>
                         <groupId>com.h2database</groupId>
                         <artifactId>h2</artifactId>
-                        <version>1.4.200</version>
+                        <version>2.0.206</version>
                     </dependency>
                 </dependencies>
             </plugin>
